@@ -210,15 +210,16 @@ void loop() {
   if (contador1 == 1)//se tiene el primer flanco en donde s epide el dato al SP32 del sensor y lo manda de regreso al PS32
   {
     Serial3.println("140, 40");
-    if (Serial3.available() > 0) {//si el SP32 puede enviar algo lo toma
-      //Se leen los datos provenientes del ESP32
+    if (Serial3.available() > 0) {//se tiene el recibidor de datos del sp32 
+      //Se leen los datos 
       dutycycleled1 = Serial3.readStringUntil('\n');
+      
       //Separación de los datos
       HER = s.separa(dutycycleled1, ',', 0);
       SPO2 = s.separa(dutycycleled1, ',', 1);
 
     }
-    Serial3.println(dutycycleled1);// envia el dato de regreso al sp32
+    Serial3.println(dutycycleled1);// envia el dato 
     LCD_Print(HER , 180, 50, 2, 0x0000,   0xFFFF);
     LCD_Print(SPO2 , 150, 190, 2, 0x0000,   0xFFFF);
     Serial.println(dutycycleled1);
