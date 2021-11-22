@@ -168,20 +168,19 @@ void setup() {
   String text1 = "Sensor de temp";//se imprime en la pantalla TTF la frase
   //dutycycleled1 = "<HOLA";
   //se coloca en el lugar donde se quiere la frase dando cordenadas especificas como tipo deletra y relleno
-  
-   LCD_Print(txt1 , 60, 50, 2, 0x0000,   0xFFFF);
+
+  LCD_Print(txt1 , 60, 50, 2, 0x0000,   0xFFFF);
   LCD_Print(txt2 , 60, 190, 2, 0x0000,   0xFFFF);
-  LCD_Print(HER , 180, 50, 2, 0x0000,   0xFFFF);
-  LCD_Print(SPO2 , 150, 190, 2, 0x0000,   0xFFFF);
+
 }
 
 //---------------------------------------------------------------------------------------------------------------------
 //loop
 //---------------------------------------------------------------------------------------------------------------------
 void loop() {
- 
 
-  
+
+
   if (digitalRead(btn2) == LOW)//Se inician loscontadores para encontrar flancos que inciilcen la sintrucciones
   {
     if (contador1 >= 0)
@@ -220,7 +219,8 @@ void loop() {
 
     }
     Serial3.println(dutycycleled1);// envia el dato de regreso al sp32
-    LCD_Print(dutycycleled1, 120, 100, 2, 0x001F, 0xFFFF);//imprime el dato en la TFT
+    LCD_Print(HER , 180, 50, 2, 0x0000,   0xFFFF);
+    LCD_Print(SPO2 , 150, 190, 2, 0x0000,   0xFFFF);
     Serial.println(dutycycleled1);
     analogWrite(ledv, encendido);//me demuestra por sonido y led que funciono la funcion
     delay(100);

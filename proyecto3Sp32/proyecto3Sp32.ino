@@ -9,7 +9,6 @@
 // Librerías
 //*****************************************************************************
 #include <Arduino.h>       // se incluye la librereria de arduino
-#include <LiquidCrystal.h> // se incluye la libreria para el LCD
 #include <Separador.h>
 //librerías de NEOPIXEL
 #include <Adafruit_NeoPixel.h>
@@ -25,13 +24,7 @@ MAX30105 particleSensor;
 // Definición de pines
 //****************************************************************************
 
-//se nombran los pines de la LCD
-#define d4 27
-#define d5 14
-#define d6 12
-#define d7 13
-#define en 26
-#define rs 25
+
 
 //se nombran el pin del neopixel
 #define PIN 4
@@ -46,7 +39,6 @@ void sensorMAX30105(void);
 //*****************************************************************************
 // Create An LCD Object. Signals: [ RS, EN, D4, D5, D6, D7 ]
 //se crea la libreria para inicializar el LCD
-LiquidCrystal LCD(rs, en, d4, d5, d6, d7);
 uint8_t voltaje3; //se nombra a una variable la cual recibira el texto de la comunicacion USART
 
 int adcRaw;    //la netrada del sensor analogico
@@ -103,9 +95,6 @@ void setup()
   //Configuración MAX30105
   pinMode(pulseLED, OUTPUT);
   pinMode(readLED, OUTPUT);
-  //LCD_Init(rs, en, d4, d5, d6, d7);
-  // Initialize The LCD. Parameters: [ Columns, Rows ]
-  LCD.begin(16, 2); //se iniciara lacomunicacion con la LCD
   // Initialización para MAX30105
   if (!particleSensor.begin(Wire, I2C_SPEED_FAST)) //Usa el I2C default, velocidad de 400kHz 
   {
@@ -142,18 +131,7 @@ void loop()
   if(Serial2.read()=='guardando'){
     rainbow(20);
   }
-  LCD.clear(); //s einicia la impresion en el LCD ya que debe limpiars ede primero para no sobreescibir sobre algun caracter anterior
-  LCD.print("");
-  LCD.print("HR");
-  LCD.print("   ");
-  LCD.print("HR");
-  LCD.setCursor(1, 1); //un espaciador para representar el dato que obtuvo el SP32 
-  LCD.print(" ");
-  LCD.print(heartRate);
-  LCD.print(" ");
-  LCD.print(spo2);
-
-  delay(250); // es recomendado tener un delay por el LCD y como se debe refrescar el mismo
+  
 }
 
 //---------------------------------------------------------------------------------------------------------------------
