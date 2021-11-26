@@ -1,3 +1,5 @@
+
+
 //*****************************************************************************
 // Universidad del Valle de Guatemala
 // BE3015 - Electrónica Digital 2
@@ -70,7 +72,7 @@ int32_t bufferLength; // dato
 int32_t spo2; //SPO2
 int8_t validSPO2; //valor del SPO2 es valido
 int32_t heartRate; //Ritmo Cardíaco 
-int8_t validHeartRate; /Ritmo cardíaco es valido
+int8_t validHeartRate; //Ritmo cardíaco es valido
 
 byte pulseLED = 11; 
 byte readLED = 13; 
@@ -128,10 +130,10 @@ void setup()
 //*****************************************************************************
 void loop()
 {
-  colorWipe(255,20);
+  colorWipe(145,20);
   sensorMAX30105();
-  if(Serial2.read()=='guardando'){
-    rainbow(20);
+  if(Serial2.read()=='SD'){
+    rainbow(10);
   }
   
 }
@@ -192,7 +194,7 @@ void sensorMAX30105(void){
       Serial2.println(spo2,DEC);
 
      if (Serial2.available()>0){
-      rainbowCycle(2);//ciclo para neopixel 
+      rainbowCycle(15);//ciclo para neopixel 
       
      //se incializa la lectura de datos desde la tiva 
       dato = Serial2.readStringUntil('\n');//leer el dato hasta que haya un enter 

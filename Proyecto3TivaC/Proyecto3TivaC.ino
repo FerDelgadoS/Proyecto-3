@@ -276,6 +276,7 @@ void writeSD(void) {
     // close the file:
     myFile.close();
     Serial.println("done.");
+    Serial3.println("SD");
   } else {
     // if the file didn't open, print an error:
     Serial.println("error opening data.csv");
